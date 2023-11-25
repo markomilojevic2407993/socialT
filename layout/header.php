@@ -2,6 +2,22 @@
 
 include '../model/init.php';
 
+// Provera da li je sesija već pokrenuta
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Provera da li postoji korisnik u sesiji
+if (isset($_SESSION['user'])) {
+    // Korisnik je prijavljen, možete koristiti $_SESSION['user']
+    $user = $_SESSION['user'];
+    echo "Dobrodošli, {$user['nickname']}!";
+} else {
+    // Korisnik nije prijavljen, možete prikazati prijavu/registraciju ili nešto drugo
+    echo "Niste prijavljeni. '<a href='login.php'>' Login '</a>'";
+}
+?>
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
